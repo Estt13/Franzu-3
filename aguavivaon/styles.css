@@ -1,0 +1,253 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, #051a47 0%, #0a2f6b 15%, #0d4a8a 30%, #0f5da3 50%, #0c4a7f 70%, #081f3d 100%);
+    background-attachment: fixed;
+    position: relative;
+    transition: background 0.8s ease-in-out;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 20% 50%, rgba(0, 180, 216, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(0, 100, 150, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 20%, rgba(100, 200, 255, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+    animation: oceanFlow 20s ease-in-out infinite;
+}
+
+@keyframes oceanFlow {
+    0%, 100% {
+        background: 
+            radial-gradient(ellipse at 20% 50%, rgba(0, 180, 216, 0.1) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 80%, rgba(0, 100, 150, 0.15) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 20%, rgba(100, 200, 255, 0.08) 0%, transparent 40%);
+    }
+    50% {
+        background: 
+            radial-gradient(ellipse at 30% 60%, rgba(0, 180, 216, 0.15) 0%, transparent 50%),
+            radial-gradient(ellipse at 70% 70%, rgba(0, 100, 150, 0.1) 0%, transparent 50%),
+            radial-gradient(ellipse at 40% 30%, rgba(100, 200, 255, 0.12) 0%, transparent 40%);
+    }
+}
+
+body.success, body.success html {
+    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 25%, #ff69b4 50%, #87ceeb 75%, #1e90ff 100%);
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background: linear-gradient(135deg, #ff1493 0%, #ff69b4 25%, #ff69b4 50%, #87ceeb 75%, #1e90ff 100%);
+    }
+    50% {
+        background: linear-gradient(135deg, #ff69b4 0%, #ff1493 25%, #87ceeb 50%, #1e90ff 75%, #ff69b4 100%);
+    }
+}
+
+/* Mar Vivo e Interativo */
+#ocean {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Câmera Preview */
+#camera-preview {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    object-fit: cover;
+    display: none;
+}
+
+/* Interface Principal */
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.container > * {
+    pointer-events: auto;
+}
+
+h1 {
+    color: #e0f2fe;
+    font-size: 1.8rem;
+    text-shadow: 0 0 10px rgba(0, 180, 216, 0.8);
+    font-weight: 600;
+    line-height: 1.4;
+    margin-top: 20px;
+    transition: all 0.5s ease;
+}
+
+.buttons-wrapper {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.btn {
+    position: absolute;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: background 0.3s, transform 0.1s, left 0.2s ease, top 0.2s ease;
+}
+
+#btnSim {
+    background: #00b4d8;
+    color: white;
+    transform: translateX(-70px);
+    z-index: 12;
+}
+
+#btnSim:hover {
+    background: #0099b8;
+}
+
+#btnNao {
+    background: #ff4d6d;
+    color: white;
+    transform: translateX(70px);
+    z-index: 12;
+    touch-action: none;
+}
+
+#btnNao:hover {
+    background: #ff2050;
+}
+
+/* Água-viva Controlável */
+#jellyfish {
+    position: absolute;
+    width: 140px;
+    height: 200px;
+    left: calc(50% - 70px);
+    top: calc(50% - 100px);
+    z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(0 0 30px rgba(0, 180, 216, 0.9)) drop-shadow(0 0 50px rgba(0, 200, 255, 0.6));
+    animation: jellyGlow 2s ease-in-out infinite;
+}
+
+@keyframes jellyGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 30px rgba(0, 180, 216, 0.9)) drop-shadow(0 0 50px rgba(0, 200, 255, 0.6));
+    }
+    50% {
+        filter: drop-shadow(0 0 40px rgba(0, 200, 255, 1)) drop-shadow(0 0 60px rgba(100, 220, 255, 0.8));
+    }
+}
+
+/* Efeito de Vitória */
+body.success h1 {
+    color: #fff0f3;
+    text-shadow: 0 0 15px #ff4d6d;
+    font-size: 2.5rem;
+}
+
+body.success #jellyfish {
+    filter: drop-shadow(0 0 30px #ff4d6d) drop-shadow(0 0 60px #ff69b4) hue-rotate(140deg);
+}
+
+#screenshot-preview {
+    width: 100%;
+    height: auto;
+    max-height: 55vh;
+    max-width: 90vw;
+    border-radius: 15px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+    animation: scaleIn 0.5s ease;
+    display: block;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.post-scenario {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 700px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 20;
+    pointer-events: auto;
+    box-shadow: 0 15px 60px rgba(255, 77, 109, 0.3);
+}
+
+.heart {
+    position: absolute;
+    color: #ff4d6d;
+    font-size: 2rem;
+    pointer-events: none;
+    z-index: 8;
+    animation: floatUp 3s linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh) scale(1.5) rotate(360deg);
+        opacity: 0;
+    }
+}
